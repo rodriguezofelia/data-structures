@@ -155,7 +155,11 @@ def all_data(filename):
 
     all_data = []
 
-    # TODO: replace this with your code
+    cohort_data = open(filename)
+
+    for line in cohort_data:
+      first_name, last_name, house, advisor, cohort_name = line.rstrip().split('|')
+      all_data.append((f'{first_name} {last_name}', house, advisor, cohort_name))
 
     return all_data
 
