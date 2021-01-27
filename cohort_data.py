@@ -226,10 +226,6 @@ def find_duped_last_names(filename):
     return duplicates
 
 
-
-
-
-
 def get_housemates_for(filename, name):
     """Return a set of housemates for the given student.
 
@@ -242,7 +238,24 @@ def get_housemates_for(filename, name):
     {'Angelina Johnson', ..., 'Seamus Finnigan'}
     """
 
-    # TODO: replace this with your code
+    cohort_data = all_data(filename)
+
+    housemates = set()
+    person_details = None
+
+    for full_name, house, _, cohort_name in cohort_data:
+      if full_name == name:
+        person_details = [house, cohort_name]
+        break
+
+    for full_name, house, _, cohort_name in cohort_data: 
+      if person_details[0] == house and person_details[1] == cohort_name and name != full_name:
+        housemates.add(full_name)
+
+    return housemates
+
+
+
 
 
 ##############################################################################
