@@ -55,6 +55,8 @@ def students_by_cohort(filename, cohort='All'):
     """
 
     students = []
+    cohort_data = open(filename)
+
 
     for line in cohort_data:
       first_name, last_name, _, _, cohort_name = line.rstrip().split('|')
@@ -103,10 +105,34 @@ def all_names_by_house(filename):
     ghosts = []
     instructors = []
 
-    # TODO: replace this with your code
+    cohort_data = open(filename)
 
-    return []
 
+    for line in cohort_data:
+      first_name, last_name, house, _, cohort_name = line.rstrip().split('|')
+      
+      full_name = (f'{first_name} {last_name}')
+
+      if house: 
+        if house == "Dumbledore's Army":
+          dumbledores_army.append(full_name)
+        elif house == "Gryffindor":
+          gryffindor.append(full_name)
+        elif house == "Hufflepuff":
+          hufflepuff.append(full_name)
+        elif house == "Ravenclaw":
+          ravenclaw.append(full_name)
+        elif house == "Slytherin":
+          slytherin.append(full_name)
+      else: 
+        if cohort_name == "G":
+          ghosts.append(full_name)
+        elif cohort_name == "I":
+          instructors.append(full_name)
+
+
+    return [sorted(dumbledores_army), sorted(gryffindor), sorted(hufflepuff), sorted(ravenclaw), sorted(slytherin), sorted(ghosts), sorted(instructors)]
+            
 
 def all_data(filename):
     """Return all the data in a file.
